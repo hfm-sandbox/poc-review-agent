@@ -1,0 +1,14 @@
+{
+  "bug": {
+    "path": "average.rb",
+    "source": "def average(values)\n  return nil if values.empty?\n\n  values.sum / values.length\nend\n",
+    "diff": "--- a/average.rb\n+++ b/average.rb\n@@ -1,5 +1,5 @@\n def average(values)\n   return nil if values.empty?\n \n-  values.sum.fdiv(values.length)\n+  values.sum / values.length\n end\n",
+    "expected": "整数配列 [1, 2] の平均が 1.5 から 1 になる整数除算の退行。average.rb:4 の指摘が期待される。"
+  },
+  "clean": {
+    "path": "average.rb",
+    "source": "def average(values)\n  return nil if values.empty?\n\n  total = values.sum\n  total.fdiv(values.length)\nend\n",
+    "diff": "--- a/average.rb\n+++ b/average.rb\n@@ -1,5 +1,6 @@\n def average(values)\n   return nil if values.empty?\n \n-  values.sum.fdiv(values.length)\n+  total = values.sum\n+  total.fdiv(values.length)\n end\n",
+    "expected": "意味を変えない変数抽出。findings は空が期待される。"
+  }
+}
